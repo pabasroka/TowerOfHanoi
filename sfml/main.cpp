@@ -25,8 +25,8 @@ int sizeC{};
 int sizeR{};
 
 extern int globalCounter{};
-extern int from[100]{};
-extern int to[100]{};
+extern int from[80000000]{};
+extern int to[80000000]{};
 
 void hanoi(float n, char A, char B, char C)
 {
@@ -73,6 +73,9 @@ int main()
     std::vector<sf::RectangleShape> plates; sf::RectangleShape plate;
 
     std::vector<sf::RectangleShape> vrodL;std::vector<sf::RectangleShape> vrodC;std::vector<sf::RectangleShape> vrodR;
+    vrodL.reserve(10000);
+    vrodC.reserve(10000);
+    vrodR.reserve(10000);
 
     //User decide how many plates there will be
     float n{};
@@ -179,7 +182,7 @@ int main()
                 vrodR.pop_back();
             }
 
-            else if(from[e] == 3 && to[e] == 2)  // R -> C
+            else if (from[e] == 3 && to[e] == 2)  // R -> C
             {
                 vrodC.push_back(vrodR[sizeR - 1]);
                 sizeR--;
@@ -189,6 +192,7 @@ int main()
                 hLvlR--;
                 vrodR.pop_back();
             }
+
             totalMoves--;
             e++;
         }
